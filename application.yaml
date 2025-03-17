@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata: 
+  name: nginx-argo-app
+  namespace: argocd
+spec: 
+  project: default
+  source: 
+    repoURL: https://github.com/deependra-parmar/argo-dev.git
+    revision: HEAD
+    path: dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: myapp
+
+  # For creating ns if not exists
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+  
+  # Turn automatic deployment to on (POLLS EVERY 3 MINUTES)
+  # If you don't want the delay, configure a GITHUB WEBHOOK
+  automated:
+    selfHeal: true # enable auto-sync to trigger when git repo is changed
+    prune: true # to enable deleting the resources when a manifest is deleted.
