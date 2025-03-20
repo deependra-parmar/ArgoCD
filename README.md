@@ -21,4 +21,4 @@ By default, username is admin and password is saved in a secret file named **arg
 k get secret argocd-initial-admin-secret -n argocd -o yaml
 ```
 
-Get the secret and decode it using base64 and login to the dashboard.
+Get the secret and decode it using base64 and login to the dashboard. --> C-Zb39y6YB5bFJaf
